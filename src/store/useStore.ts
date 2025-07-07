@@ -122,7 +122,7 @@ export const useStore = create<Store>()(
       setSelectedCategory: (categoryId) => set({ selectedCategory: categoryId }),
     }),
     {
-      name: 'ecommerce-store',
+      name: 'Hinggi.id-store',
       partialize: (state) => ({
         cartItems: state.cartItems,
         wishlistItems: state.wishlistItems,

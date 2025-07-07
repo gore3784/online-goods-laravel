@@ -5,17 +5,18 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useStore } from '@/store/useStore';
 import { Badge } from '@/components/ui/badge';
+import { LogOutIcon } from 'lucide-react';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  
-  const { 
-    searchQuery, 
-    setSearchQuery, 
+
+  const {
+    searchQuery,
+    setSearchQuery,
     getCartItemsCount,
     user,
-    wishlistItems 
+    wishlistItems
   } = useStore();
 
   const cartItemsCount = getCartItemsCount();
@@ -28,6 +29,14 @@ export const Header = () => {
     }
   };
 
+  //logout
+  const handleLogout = () => {
+    // Clear user data (e.g., from localStorage)
+    localStorage.removeItem('userToken'); // Or whatever you use for authentication
+    // Redirect to login page or home
+    navigate('/login');
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -36,7 +45,7 @@ export const Header = () => {
           <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-lg">E</span>
           </div>
-          <span className="font-bold text-xl">ECommerce</span>
+          <span className="font-bold text-xl">Hinggi.id</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -96,13 +105,34 @@ export const Header = () => {
           </Button>
 
           {/* User Menu */}
-          {user ? (
+          {/* {user ? (
             <Button variant="ghost" size="sm" asChild>
               <Link to="/profile">
                 <UserIcon className="h-5 w-5" />
                 <span className="ml-2 hidden sm:inline">Profile</span>
               </Link>
             </Button>
+          ) : (
+            <Button variant="default" size="sm" asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+          )} */}
+
+          {/* User Menu */}
+          {user ? (
+            <> {/* Use a fragment to group multiple elements */}
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/profile">
+                  <UserIcon className="h-5 w-5" />
+                  <span className="ml-2 hidden sm:inline">Profile</span>
+                </Link>
+              </Button>
+              {/* Logout Button */}
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2">
+                <LogOutIcon className="h-5 w-5" />
+                <span className="hidden sm:inline">Logout</span>
+              </Button>
+            </>
           ) : (
             <Button variant="default" size="sm" asChild>
               <Link to="/login">Login</Link>
@@ -148,22 +178,22 @@ export const Header = () => {
 
             {/* Mobile Navigation */}
             <nav className="flex flex-col space-y-2">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
               </Link>
-              <Link 
-                to="/products" 
+              <Link
+                to="/products"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Products
               </Link>
-              <Link 
-                to="/categories" 
+              <Link
+                to="/categories"
                 className="text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

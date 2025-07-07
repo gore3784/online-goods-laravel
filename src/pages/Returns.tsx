@@ -242,7 +242,7 @@ export const Returns = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center">
               <h4 className="font-semibold mb-2">Email Support</h4>
-              <p className="text-sm text-muted-foreground">returns@ecommerce.com</p>
+              <p className="text-sm text-muted-foreground">returns@Hinggi.id.com</p>
               <p className="text-xs text-muted-foreground">Response within 24 hours</p>
             </div>
             

@@ -8,10 +8,9 @@ export const About = () => {
     <div className="container py-8">
       {/* Hero Section */}
       <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">About ECommerce</h1>
+        <h1 className="text-4xl font-bold mb-4">About Hinggi.id</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Your trusted online shopping destination, bringing quality products and exceptional service 
-          to customers across Indonesia since 2020.
+          Hinggi.id adalah toko online yang menyediakan berbagai produk dengan harga terjangkau.
         </p>
       </div>
 
@@ -22,19 +21,21 @@ export const About = () => {
         </CardHeader>
         <CardContent className="prose max-w-none">
           <p className="text-muted-foreground mb-4">
-            Founded in 2020, ECommerce started as a small online marketplace with a simple mission: 
-            to make quality products accessible to everyone across Indonesia. What began as a team of 
-            passionate entrepreneurs has grown into one of the country's most trusted e-commerce platforms.
+            Didirikan pada tahun 2020, Hinggi.id dimulai sebagai pasar online kecil dengan misi sederhana: 
+            membuat produk berkualitas dapat dijangkau oleh semua orang di seluruh Indonesia. Apa yang 
+            dimulai sebagai tim entrepreneur berpengalaman telah tumbuh menjadi salah satu platform 
+            e-commerce yang paling dipercaya di negara ini.
           </p>
           <p className="text-muted-foreground mb-4">
-            We believe that shopping online should be easy, secure, and enjoyable. That's why we've 
-            built our platform with cutting-edge technology and a customer-first approach that puts 
-            your satisfaction at the heart of everything we do.
+            Kami percaya bahwa berbelanja online harus mudah, aman, dan menyenangkan. Oleh karena itu, 
+            kami telah membangun platform kami dengan teknologi terdepan dan pendekatan pelanggan 
+            yang menempatkan kepuasan Anda di jantung segala sesuatu yang kami lakukan.
           </p>
           <p className="text-muted-foreground">
-            Today, we serve thousands of customers nationwide, offering everything from electronics 
-            and fashion to home goods and books. Our commitment to quality, competitive pricing, 
-            and exceptional customer service has made us a preferred choice for online shoppers.
+            Hari ini, kami melayani ribuan pelanggan di seluruh negeri, menawarkan segala sesuatu dari 
+            elektronik dan fashion hingga perlengkapan rumah dan buku. Komitmen kami terhadap kualitas, 
+            harga yang kompetitif, dan layanan pelanggan yang luar biasa telah menjadikan kami pilihan 
+            terbaik untuk pembeli online.
           </p>
         </CardContent>
       </Card>
@@ -50,8 +51,8 @@ export const About = () => {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              To provide an exceptional online shopping experience by offering high-quality products, 
-              competitive prices, and outstanding customer service that exceeds expectations.
+              Memberikan pengalaman berbelanja online yang luar biasa dengan menawarkan produk berkualitas, 
+              harga yang kompetitif, dan layanan pelanggan yang luar biasa.
             </p>
           </CardContent>
         </Card>
@@ -65,8 +66,8 @@ export const About = () => {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground">
-              To become Indonesia's most trusted and innovative e-commerce platform, connecting 
-              people with the products they love while building lasting relationships with our community.
+              Menjadi platform e-commerce yang paling dipercaya dan inovatif di Indonesia, menghubungkan 
+              orang dengan produk yang mereka sukai sementara membangun hubungan yang panjang dengan komunitas kami.
             </p>
           </CardContent>
         </Card>
@@ -88,7 +89,7 @@ export const About = () => {
               </div>
               <h3 className="font-semibold mb-2">Trust & Security</h3>
               <p className="text-sm text-muted-foreground">
-                We protect your personal information and ensure secure transactions.
+                Kami melindungi informasi pribadi Anda dan memastikan transaksi yang aman.
               </p>
             </div>
 
@@ -98,7 +99,7 @@ export const About = () => {
               </div>
               <h3 className="font-semibold mb-2">Customer First</h3>
               <p className="text-sm text-muted-foreground">
-                Your satisfaction is our priority in every interaction.
+                Kepuasan pelanggan adalah prioritas kami dalam setiap interaksi.
               </p>
             </div>
 
@@ -108,7 +109,7 @@ export const About = () => {
               </div>
               <h3 className="font-semibold mb-2">Quality Service</h3>
               <p className="text-sm text-muted-foreground">
-                We deliver exceptional service from browsing to delivery.
+                Kami memberikan layanan yang luar biasa dari pencarian hingga pengiriman.
               </p>
             </div>
 
@@ -118,7 +119,7 @@ export const About = () => {
               </div>
               <h3 className="font-semibold mb-2">Community</h3>
               <p className="text-sm text-muted-foreground">
-                We build strong relationships with customers and partners.
+                Kami membangun hubungan yang panjang dengan komunitas kami.
               </p>
             </div>
           </div>
@@ -160,7 +161,7 @@ export const About = () => {
         <CardHeader>
           <CardTitle className="text-2xl">Leadership Team</CardTitle>
           <CardDescription>
-            Meet the people behind ECommerce
+            Meet the people behind Hinggi.id
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -172,7 +173,7 @@ export const About = () => {
               <h3 className="font-semibold">Ahmad Suharto</h3>
               <p className="text-sm text-primary mb-2">Chief Executive Officer</p>
               <p className="text-sm text-muted-foreground">
-                15+ years experience in e-commerce and technology leadership.
+                15+ tahun pengalaman dalam pengelolaan e-commerce dan teknologi.
               </p>
             </div>
 
@@ -251,7 +252,7 @@ export const About = () => {
         <CardContent className="py-8">
           <h2 className="text-2xl font-bold mb-4">Ready to Shop with Us?</h2>
           <p className="text-muted-foreground mb-6">
-            Join thousands of satisfied customers and experience the difference of shopping with ECommerce.
+            Join thousands of satisfied customers and experience the difference of shopping with Hinggi.id.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>

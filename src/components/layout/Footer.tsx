@@ -9,12 +9,12 @@ export const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">E</span>
+                <span className="text-primary-foreground font-bold text-lg">H</span>
               </div>
-              <span className="font-bold text-xl">ECommerce</span>
+              <span className="font-bold text-xl">Hinggi.id</span>
             </div>
             <p className="text-muted-foreground text-sm">
-              Your trusted online shopping destination for quality products at great prices.
+              Hinggi.id adalah toko online yang menyediakan berbagai produk dengan harga terjangkau.
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export const Footer = () => {
 
         <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 ECommerce. All rights reserved.
+            © 2024 Hinggi.id. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link to="/privacy" className="text-muted-foreground hover:text-foreground transition-colors text-sm">

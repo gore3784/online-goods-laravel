@@ -31,17 +31,20 @@ export const Home = () => {
         <div className="container">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Welcome to Our Store
+              Selamat data di Toko kami
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90">
-              Discover amazing products at unbeatable prices. Shop now and enjoy fast, secure delivery.
+              Temukan produk yang anda butuhkan dengan harga yang terjangkau. Belanja sekarang dan nikmati pengiriman yang cepat dan aman.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" variant="secondary" asChild>
                 <Link to="/products">Shop Now</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                Learn More
+              {/* <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                <Link to="/about">Learn More</Link>
+              </Button> */}
+              <Button size="lg" variant="outline" className="bg-white text-black border-black hover:bg-gray-100 hover:text-black">
+                <Link to="/about">Learn More</Link>
               </Button>
             </div>
           </div>
@@ -53,10 +56,10 @@ export const Home = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4">Shop by Category</h2>
           <p className="text-muted-foreground text-lg">
-            Find exactly what you're looking for
+            Temukan produk yang anda butuhkan
           </p>
         </div>
-        
+
         <div className="flex flex-wrap gap-3 justify-center mb-8">
           <Button
             variant={selectedCategory === null ? "default" : "outline"}
@@ -81,15 +84,15 @@ export const Home = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-3xl font-bold mb-2">
-              {selectedCategory ? 
-                mockCategories.find(cat => cat.id === selectedCategory)?.name : 
+              {selectedCategory ?
+                mockCategories.find(cat => cat.id === selectedCategory)?.name :
                 'Featured Products'
               }
             </h2>
             <p className="text-muted-foreground">
-              {selectedCategory ? 
+              {selectedCategory ?
                 mockCategories.find(cat => cat.id === selectedCategory)?.description :
-                'Discover our most popular items'
+                'Temukan produk yang anda butuhkan'
               }
             </p>
           </div>
@@ -97,7 +100,7 @@ export const Home = () => {
             <Link to="/products">View All</Link>
           </Button>
         </div>
-        
+
         <ProductGrid products={filteredProducts} loading={loading} />
       </section>
 
