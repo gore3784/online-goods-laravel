@@ -13,6 +13,13 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Wishlist } from "./pages/Wishlist";
 import { Profile } from "./pages/Profile";
+import { Categories } from "./pages/Categories";
+import { Orders } from "./pages/Orders";
+import { Contact } from "./pages/Contact";
+import { FAQ } from "./pages/FAQ";
+import { Shipping } from "./pages/Shipping";
+import { Returns } from "./pages/Returns";
+import { About } from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +41,13 @@ const App = () => (
             <Route path="/register" element={<Register />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/returns" element={<Returns />} />
+            <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
