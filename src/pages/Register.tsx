@@ -28,7 +28,7 @@ export const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.full_name || !formData.email || !formData.password || !formData.confirm_password) {
       toast.error('Please fill in all fields');
       return;
@@ -44,120 +44,117 @@ export const Register = () => {
       return;
     }
 
-    setLoading(true);
-    
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock user registration
-      const user = {
-        id: 'user-' + Date.now(),
-        email: formData.email,
+    const res = await fetch('http://127.0.0.1:8000/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         full_name: formData.full_name,
-        created_at: new Date().toISOString()
-      };
-      
-      setUser(user);
-      toast.success('Account created successfully!');
-      navigate('/');
-      
-    } catch (error) {
-      toast.error('Registration failed. Please try again.');
-    } finally {
-      setLoading(false);
+        email: formData.email,
+        password: formData.password
+      })
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      throw new Error(errorData.message || 'Registration failed');
     }
-  };
 
-  return (
-    <div className="container py-8">
-      <div className="max-w-md mx-auto">
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Create Account</CardTitle>
-            <CardDescription>
-              Sign up to start shopping with us
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="full_name">Full Name</Label>
-                <Input
-                  id="full_name"
-                  type="text"
-                  value={formData.full_name}
-                  onChange={(e) => handleInputChange('full_name', e.target.value)}
-                  required
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  required
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={formData.password}
-                  onChange={(e) => handleInputChange('password', e.target.value)}
-                  required
-                />
-              </div>
+    const data = await res.json();
+    localStorage.setItem('token', data.token); // Simpan token
+    setUser(data.user);
+    toast.success('Account created successfully!');
+    navigate('/');
+};
 
-              <div>
-                <Label htmlFor="confirm_password">Confirm Password</Label>
-                <Input
-                  id="confirm_password"
-                  type="password"
-                  value={formData.confirm_password}
-                  onChange={(e) => handleInputChange('confirm_password', e.target.value)}
-                  required
-                />
+return (
+  <div className="container py-8">
+    <div className="max-w-md mx-auto">
+      <Card>
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl">Create Account</CardTitle>
+          <CardDescription>
+            Sign up to start shopping with us
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="full_name">Full Name</Label>
+              <Input
+                id="full_name"
+                type="text"
+                value={formData.full_name}
+                onChange={(e) => handleInputChange('full_name', e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange('email', e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={formData.password}
+                onChange={(e) => handleInputChange('password', e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="confirm_password">Confirm Password</Label>
+              <Input
+                id="confirm_password"
+                type="password"
+                value={formData.confirm_password}
+                onChange={(e) => handleInputChange('confirm_password', e.target.value)}
+                required
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={loading}
+            >
+              {loading ? 'Creating Account...' : 'Create Account'}
+            </Button>
+          </form>
+
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <Separator />
               </div>
-
-              <Button 
-                type="submit" 
-                className="w-full" 
-                disabled={loading}
-              >
-                {loading ? 'Creating Account...' : 'Create Account'}
-              </Button>
-            </form>
-
-            <div className="mt-6">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <Separator />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-background px-2 text-muted-foreground">
-                    Or
-                  </span>
-                </div>
-              </div>
-
-              <div className="text-center mt-4">
-                <p className="text-sm text-muted-foreground">
-                  Already have an account?{' '}
-                  <Link to="/login" className="text-primary hover:underline">
-                    Sign in
-                  </Link>
-                </p>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or
+                </span>
               </div>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+
+            <div className="text-center mt-4">
+              <p className="text-sm text-muted-foreground">
+                Already have an account?{' '}
+                <Link to="/login" className="text-primary hover:underline">
+                  Sign in
+                </Link>
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
-  );
+  </div>
+);
 };

@@ -15,7 +15,7 @@ export const Checkout = () => {
   const { cartItems, getCartTotal, clearCart } = useStore();
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('bank_transfer');
-  
+
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     full_name: '',
     phone: '',
@@ -25,11 +25,17 @@ export const Checkout = () => {
     province: ''
   });
 
+  const subtotal = getCartTotal();
+  const shipping = 50000;
+  const grandTotal = subtotal + shipping;
+
+  const token = localStorage.getItem('token') || '';
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
-      minimumFractionDigits: 0,
+      minimumFractionDigits: 0
     }).format(price);
   };
 
@@ -42,12 +48,10 @@ export const Checkout = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate form
+
     const requiredFields: (keyof ShippingAddress)[] = [
       'full_name', 'phone', 'address', 'city', 'postal_code', 'province'
     ];
-    
     for (const field of requiredFields) {
       if (!shippingAddress[field].trim()) {
         toast.error(`Please fill in ${field.replace('_', ' ')}`);
@@ -56,36 +60,32 @@ export const Checkout = () => {
     }
 
     setLoading(true);
-    
-    try {
-      // Simulate API call to create order
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Create order object
-      const order = {
-        id: `order-${Date.now()}`,
-        user_id: 'guest',
-        total_amount: grandTotal,
-        status: 'pending' as const,
-        shipping_address: shippingAddress,
-        created_at: new Date().toISOString(),
-        order_items: cartItems.map(item => ({
-          id: `item-${item.id}`,
-          order_id: `order-${Date.now()}`,
-          product_id: item.product.id,
-          product: item.product,
-          quantity: item.quantity,
-          price: item.product.price
-        }))
-      };
 
-      // Clear cart after successful order
+    try {
+      const res = await fetch('http://localhost:8000/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token && { Authorization: `Bearer ${token}` })
+        },
+        body: JSON.stringify({
+          items: cartItems.map(item => ({
+            product_id: item.product.id,
+            quantity: item.quantity
+          })),
+          shipping_address: shippingAddress
+        })
+      });
+
+      if (!res.ok) throw new Error('Failed to place order');
+
+      await res.json();
+
       clearCart();
-      
       toast.success('Order placed successfully!');
       navigate('/orders');
-      
     } catch (error) {
+      console.error(error);
       toast.error('Failed to place order. Please try again.');
     } finally {
       setLoading(false);
@@ -107,10 +107,6 @@ export const Checkout = () => {
       </div>
     );
   }
-
-  const subtotal = getCartTotal();
-  const shipping = 50000;
-  const grandTotal = subtotal + shipping;
 
   return (
     <div className="container py-8">
@@ -220,7 +216,6 @@ export const Checkout = () => {
                 <CardTitle>Order Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {/* Order Items */}
                 <div className="space-y-2">
                   {cartItems.map((item) => (
                     <div key={item.id} className="flex justify-between text-sm">
@@ -242,20 +237,15 @@ export const Checkout = () => {
                   <span>Shipping</span>
                   <span>{formatPrice(shipping)}</span>
                 </div>
-                
+
                 <Separator />
-                
+
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Total</span>
                   <span>{formatPrice(grandTotal)}</span>
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full" 
-                  size="lg"
-                  disabled={loading}
-                >
+                <Button type="submit" className="w-full" size="lg" disabled={loading}>
                   {loading ? 'Processing...' : 'Place Order'}
                 </Button>
               </CardContent>

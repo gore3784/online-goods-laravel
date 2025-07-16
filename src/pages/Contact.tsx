@@ -16,8 +16,7 @@ export const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    toast.success('Thank you for your message! We will get back to you soon.');
+    toast.success('Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda.');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -31,19 +30,19 @@ export const Contact = () => {
   return (
     <div className="container py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Contact Us</h1>
+        <h1 className="text-3xl font-bold mb-2">Hubungi Kami</h1>
         <p className="text-muted-foreground">
-          Get in touch with our customer service team
+          Silakan hubungi tim layanan pelanggan kami
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Contact Form */}
+        {/* Formulir Kontak */}
         <Card>
           <CardHeader>
-            <CardTitle>Send us a Message</CardTitle>
+            <CardTitle>Kirim Pesan</CardTitle>
             <CardDescription>
-              Fill out the form below and we'll get back to you as soon as possible.
+              Isi formulir di bawah ini dan kami akan segera merespons.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -51,7 +50,7 @@ export const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Full Name
+                    Nama Lengkap
                   </label>
                   <Input
                     id="name"
@@ -60,12 +59,12 @@ export const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Enter your full name"
+                    placeholder="Masukkan nama lengkap Anda"
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email Address
+                    Alamat Email
                   </label>
                   <Input
                     id="email"
@@ -74,14 +73,13 @@ export const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Enter your email"
+                    placeholder="Masukkan email Anda"
                   />
                 </div>
               </div>
-              
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                  Subject
+                  Subjek
                 </label>
                 <Input
                   id="subject"
@@ -90,13 +88,12 @@ export const Contact = () => {
                   required
                   value={formData.subject}
                   onChange={handleChange}
-                  placeholder="What is this regarding?"
+                  placeholder="Perihal pesan Anda"
                 />
               </div>
-              
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
+                  Pesan
                 </label>
                 <Textarea
                   id="message"
@@ -104,50 +101,47 @@ export const Contact = () => {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell us how we can help you..."
+                  placeholder="Tulis pesan Anda di sini..."
                   rows={6}
                 />
               </div>
-              
               <Button type="submit" className="w-full">
-                Send Message
+                Kirim Pesan
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        {/* Contact Information */}
+        {/* Informasi Kontak */}
         <div className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Get in Touch</CardTitle>
+              <CardTitle>Informasi Kontak</CardTitle>
               <CardDescription>
-                Here are different ways to reach us
+                Beberapa cara untuk menghubungi kami
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-start space-x-3">
                 <PhoneIcon className="h-5 w-5 text-primary mt-1" />
                 <div>
-                  <h4 className="font-semibold">Phone</h4>
+                  <h4 className="font-semibold">Telepon</h4>
                   <p className="text-muted-foreground">+62 21 1234 5678</p>
-                  <p className="text-sm text-muted-foreground">Mon-Fri, 9AM-6PM</p>
+                  <p className="text-sm text-muted-foreground">Senin - Jumat, 09.00 - 18.00</p>
                 </div>
               </div>
-              
               <div className="flex items-start space-x-3">
                 <EnvelopeIcon className="h-5 w-5 text-primary mt-1" />
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-muted-foreground">support@Hinggi.id.com</p>
-                  <p className="text-sm text-muted-foreground">We reply within 24 hours</p>
+                  <p className="text-muted-foreground">support@hinggi.id</p>
+                  <p className="text-sm text-muted-foreground">Kami akan membalas dalam 24 jam</p>
                 </div>
               </div>
-              
               <div className="flex items-start space-x-3">
                 <MapPinIcon className="h-5 w-5 text-primary mt-1" />
                 <div>
-                  <h4 className="font-semibold">Address</h4>
+                  <h4 className="font-semibold">Alamat</h4>
                   <p className="text-muted-foreground">
                     Jl. Sudirman No. 123<br />
                     Jakarta Pusat 10220<br />
@@ -155,15 +149,14 @@ export const Contact = () => {
                   </p>
                 </div>
               </div>
-              
               <div className="flex items-start space-x-3">
                 <ClockIcon className="h-5 w-5 text-primary mt-1" />
                 <div>
-                  <h4 className="font-semibold">Business Hours</h4>
+                  <h4 className="font-semibold">Jam Operasional</h4>
                   <p className="text-muted-foreground">
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Saturday: 10:00 AM - 4:00 PM<br />
-                    Sunday: Closed
+                    Senin - Jumat: 09.00 - 18.00<br />
+                    Sabtu: 10.00 - 16.00<br />
+                    Minggu: Tutup
                   </p>
                 </div>
               </div>
@@ -172,24 +165,24 @@ export const Contact = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Frequently Asked</CardTitle>
+              <CardTitle>Pertanyaan Umum</CardTitle>
               <CardDescription>
-                Quick answers to common questions
+                Jawaban cepat untuk pertanyaan yang sering ditanyakan
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold text-sm">How long does shipping take?</h4>
-                  <p className="text-sm text-muted-foreground">Usually 2-5 business days within Indonesia.</p>
+                  <h4 className="font-semibold text-sm">Berapa lama pengiriman berlangsung?</h4>
+                  <p className="text-sm text-muted-foreground">Biasanya 2-5 hari kerja untuk wilayah Indonesia.</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm">What's your return policy?</h4>
-                  <p className="text-sm text-muted-foreground">30-day return policy for most items.</p>
+                  <h4 className="font-semibold text-sm">Apa kebijakan pengembalian barang?</h4>
+                  <p className="text-sm text-muted-foreground">Pengembalian dalam 30 hari untuk sebagian besar produk.</p>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-sm">Do you offer international shipping?</h4>
-                  <p className="text-sm text-muted-foreground">Currently we only ship within Indonesia.</p>
+                  <h4 className="font-semibold text-sm">Apakah Anda mengirim ke luar negeri?</h4>
+                  <p className="text-sm text-muted-foreground">Saat ini kami hanya melayani pengiriman dalam negeri.</p>
                 </div>
               </div>
             </CardContent>

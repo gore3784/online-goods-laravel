@@ -5,7 +5,6 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { mockProducts } from '@/data/mockData';
 import { Product } from '@/types';
 import { useStore } from '@/store/useStore';
 import { toast } from 'sonner';
@@ -16,16 +15,25 @@ export const ProductDetail = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
-  
+
   const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useStore();
 
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      const foundProduct = mockProducts.find(p => p.slug === slug);
-      setProduct(foundProduct || null);
-      setLoading(false);
-    }, 500);
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`http://localhost:8000/api/products/${slug}`);
+        if (!res.ok) throw new Error('Product not found');
+        const data = await res.json();
+        setProduct(data);
+      } catch (error) {
+        setProduct(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [slug]);
 
   if (loading) {
@@ -83,7 +91,7 @@ export const ProductDetail = () => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
-      minimumFractionDigits: 0,
+      minimumFractionDigits: 0
     }).format(price);
   };
 
@@ -186,7 +194,7 @@ export const ProductDetail = () => {
               <ShoppingCartIcon className="h-5 w-5 mr-2" />
               {product.stock === 0 ? 'Out of Stock' : `Add ${quantity} to Cart`}
             </Button>
-            
+
             <Button
               variant="outline"
               onClick={handleWishlistToggle}
@@ -224,7 +232,7 @@ export const ProductDetail = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Category:</span>
-                  <span>Electronics</span>
+                  <span>{product.category_id}</span>
                 </div>
               </div>
             </CardContent>
