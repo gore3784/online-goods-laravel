@@ -21,6 +21,13 @@ import { Shipping } from "./pages/Shipping";
 import { Returns } from "./pages/Returns";
 import { About } from "./pages/About";
 import NotFound from "./pages/NotFound";
+import { AdminLayout } from "./components/layout/AdminLayout";
+import { AdminDashboard } from "./pages/admin/Dashboard";
+import { AdminProducts } from "./pages/admin/Products";
+import { AdminCategories } from "./pages/admin/Categories";
+import { AdminOrders } from "./pages/admin/Orders";
+import { AdminUsers } from "./pages/admin/Users";
+import { AdminSettings } from "./pages/admin/Settings";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +58,18 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
+        
+        {/* Admin Routes */}
+        <Routes>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="categories" element={<AdminCategories />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

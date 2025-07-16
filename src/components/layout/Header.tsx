@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useStore } from '@/store/useStore';
 import { Badge } from '@/components/ui/badge';
-import { LogOutIcon } from 'lucide-react';
+import { LogOutIcon, Settings } from 'lucide-react';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -126,9 +126,16 @@ export const Header = () => {
                   <UserIcon className="h-5 w-5" />
                   <span className="ml-2 hidden sm:inline">Profile</span>
                 </Link>
-              </Button>
-              {/* Logout Button */}
-              <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2">
+               </Button>
+               {/* Admin Link - Only show for logged in users */}
+               <Button variant="ghost" size="sm" asChild>
+                 <Link to="/admin">
+                   <Settings className="h-4 w-4" />
+                   <span className="ml-2 hidden sm:inline">Admin</span>
+                 </Link>
+               </Button>
+               {/* Logout Button */}
+               <Button variant="ghost" size="sm" onClick={handleLogout} className="ml-2">
                 <LogOutIcon className="h-5 w-5" />
                 <span className="hidden sm:inline">Logout</span>
               </Button>
@@ -192,13 +199,22 @@ export const Header = () => {
               >
                 Products
               </Link>
-              <Link
-                to="/categories"
-                className="text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Categories
-              </Link>
+               <Link
+                 to="/categories"
+                 className="text-foreground hover:text-primary transition-colors py-2"
+                 onClick={() => setIsMobileMenuOpen(false)}
+               >
+                 Categories
+               </Link>
+               {user && (
+                 <Link
+                   to="/admin"
+                   className="text-foreground hover:text-primary transition-colors py-2"
+                   onClick={() => setIsMobileMenuOpen(false)}
+                 >
+                   Admin Panel
+                 </Link>
+               )}
             </nav>
           </div>
         </div>
