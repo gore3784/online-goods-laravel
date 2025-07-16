@@ -6,127 +6,127 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 const faqData = [
   {
-    category: 'Orders & Payment',
+    category: 'Pesanan & Pembayaran',
     questions: [
       {
         id: 'order-1',
-        question: 'How do I place an order?',
-        answer: 'To place an order, browse our products, add items to your cart, and proceed to checkout. You\'ll need to provide shipping information and payment details to complete your purchase.'
+        question: 'Bagaimana cara memesan produk?',
+        answer: 'Untuk memesan produk, telusuri koleksi kami, tambahkan produk ke keranjang, lalu lanjutkan ke pembayaran. Isi data pengiriman dan metode pembayaran untuk menyelesaikan pesanan.'
       },
       {
         id: 'order-2',
-        question: 'What payment methods do you accept?',
-        answer: 'We accept various payment methods including credit cards (Visa, MasterCard), bank transfers, and popular e-wallets like OVO, GoPay, and DANA.'
+        question: 'Metode pembayaran apa saja yang tersedia?',
+        answer: 'Kami menerima kartu kredit (Visa, MasterCard), transfer bank, serta dompet digital seperti OVO, GoPay, dan DANA.'
       },
       {
         id: 'order-3',
-        question: 'Can I modify or cancel my order?',
-        answer: 'You can modify or cancel your order within 1 hour of placing it. After that, please contact our customer service team for assistance.'
+        question: 'Bisakah saya mengubah atau membatalkan pesanan?',
+        answer: 'Anda dapat mengubah atau membatalkan pesanan dalam 1 jam setelah pemesanan. Setelah itu, silakan hubungi layanan pelanggan kami.'
       },
       {
         id: 'order-4',
-        question: 'How do I track my order?',
-        answer: 'Once your order is shipped, you\'ll receive a tracking number via email. You can also check your order status in the "Order History" section of your account.'
+        question: 'Bagaimana cara melacak pesanan saya?',
+        answer: 'Setelah pesanan dikirim, Anda akan menerima nomor resi melalui email. Anda juga dapat melihat status pesanan di halaman "Riwayat Pesanan" akun Anda.'
       }
     ]
   },
   {
-    category: 'Shipping & Delivery',
+    category: 'Pengiriman & Pengantaran',
     questions: [
       {
         id: 'shipping-1',
-        question: 'How long does shipping take?',
-        answer: 'Standard shipping takes 2-5 business days within Jakarta and 3-7 business days for other cities in Indonesia. Express shipping is available for faster delivery.'
+        question: 'Berapa lama waktu pengiriman?',
+        answer: 'Pengiriman standar memakan waktu 2-5 hari kerja di Jakarta dan 3-7 hari kerja untuk kota lainnya. Tersedia juga pengiriman ekspres.'
       },
       {
         id: 'shipping-2',
-        question: 'What are the shipping costs?',
-        answer: 'Shipping costs vary based on location and package weight. Free shipping is available for orders over IDR 500,000 within Jakarta.'
+        question: 'Berapa biaya pengiriman?',
+        answer: 'Biaya pengiriman tergantung lokasi dan berat paket. Pengiriman gratis tersedia untuk pesanan di atas Rp500.000 di wilayah Jakarta.'
       },
       {
         id: 'shipping-3',
-        question: 'Do you ship internationally?',
-        answer: 'Currently, we only ship within Indonesia. We\'re working on expanding our shipping services to other countries in the future.'
+        question: 'Apakah Anda mengirim ke luar negeri?',
+        answer: 'Saat ini kami hanya melayani pengiriman dalam negeri. Namun, kami sedang mempersiapkan ekspansi ke luar negeri.'
       },
       {
         id: 'shipping-4',
-        question: 'What if my package is damaged or lost?',
-        answer: 'If your package arrives damaged or is lost during shipping, please contact us immediately. We\'ll investigate the issue and provide a replacement or full refund.'
+        question: 'Bagaimana jika paket saya rusak atau hilang?',
+        answer: 'Jika paket Anda rusak atau hilang saat pengiriman, segera hubungi kami. Kami akan menyelidiki dan memberikan pengganti atau pengembalian dana.'
       }
     ]
   },
   {
-    category: 'Returns & Refunds',
+    category: 'Pengembalian & Pengembalian Dana',
     questions: [
       {
         id: 'return-1',
-        question: 'What is your return policy?',
-        answer: 'We offer a 30-day return policy for most items. Products must be in original condition with all tags and packaging. Some items like electronics may have different return periods.'
+        question: 'Apa kebijakan pengembalian barang?',
+        answer: 'Kami memberikan kebijakan pengembalian 30 hari untuk sebagian besar produk. Barang harus dalam kondisi asli lengkap dengan tag dan kemasan. Beberapa produk elektronik mungkin memiliki kebijakan berbeda.'
       },
       {
         id: 'return-2',
-        question: 'How do I return an item?',
-        answer: 'To return an item, go to your Order History, select the order, and click "Return Item". Follow the instructions to print a return label and ship the item back to us.'
+        question: 'Bagaimana cara mengembalikan produk?',
+        answer: 'Masuk ke akun Anda, buka "Riwayat Pesanan", pilih pesanan, lalu klik "Kembalikan Barang" dan ikuti instruksinya.'
       },
       {
         id: 'return-3',
-        question: 'When will I get my refund?',
-        answer: 'Refunds are processed within 5-7 business days after we receive your returned item. The refund will be credited to your original payment method.'
+        question: 'Kapan saya akan menerima pengembalian dana?',
+        answer: 'Pengembalian dana diproses dalam 5-7 hari kerja setelah barang diterima kembali oleh kami dan akan dikreditkan ke metode pembayaran Anda.'
       },
       {
         id: 'return-4',
-        question: 'Who pays for return shipping?',
-        answer: 'For defective or wrong items, we cover return shipping costs. For other returns, customers are responsible for return shipping fees.'
+        question: 'Siapa yang menanggung biaya pengembalian?',
+        answer: 'Jika produk rusak atau salah, kami akan menanggung biaya pengembalian. Jika bukan karena kesalahan kami, biaya pengembalian ditanggung pembeli.'
       }
     ]
   },
   {
-    category: 'Account & Security',
+    category: 'Akun & Keamanan',
     questions: [
       {
         id: 'account-1',
-        question: 'How do I create an account?',
-        answer: 'Click "Register" at the top of the page, fill in your details including name, email, and password. You\'ll receive a confirmation email to activate your account.'
+        question: 'Bagaimana cara membuat akun?',
+        answer: 'Klik "Daftar" di bagian atas halaman, isi data diri seperti nama, email, dan kata sandi. Anda akan menerima email konfirmasi untuk aktivasi.'
       },
       {
         id: 'account-2',
-        question: 'I forgot my password. What should I do?',
-        answer: 'Click "Forgot Password" on the login page, enter your email address, and we\'ll send you instructions to reset your password.'
+        question: 'Saya lupa kata sandi. Apa yang harus saya lakukan?',
+        answer: 'Klik "Lupa Kata Sandi" di halaman masuk, masukkan email Anda, dan ikuti petunjuk yang dikirimkan.'
       },
       {
         id: 'account-3',
-        question: 'How do I update my account information?',
-        answer: 'Log in to your account and go to "Profile" section where you can update your personal information, shipping addresses, and preferences.'
+        question: 'Bagaimana cara memperbarui informasi akun saya?',
+        answer: 'Masuk ke akun Anda dan buka bagian "Profil" untuk memperbarui informasi pribadi dan alamat pengiriman.'
       },
       {
         id: 'account-4',
-        question: 'Is my personal information secure?',
-        answer: 'Yes, we use industry-standard encryption and security measures to protect your personal and payment information. We never share your data with third parties without your consent.'
+        question: 'Apakah informasi saya aman?',
+        answer: 'Ya, kami menggunakan enkripsi dan standar keamanan tinggi untuk melindungi data pribadi dan pembayaran Anda.'
       }
     ]
   },
   {
-    category: 'Products & Stock',
+    category: 'Produk & Stok',
     questions: [
       {
         id: 'product-1',
-        question: 'How do I know if an item is in stock?',
-        answer: 'Stock availability is shown on each product page. If an item is out of stock, you can sign up for notifications to be alerted when it\'s back in stock.'
+        question: 'Bagaimana saya tahu ketersediaan produk?',
+        answer: 'Ketersediaan produk ditampilkan di halaman masing-masing. Jika produk habis, Anda bisa mendaftar notifikasi saat stok tersedia kembali.'
       },
       {
         id: 'product-2',
-        question: 'Are your product photos accurate?',
-        answer: 'We strive to show accurate product photos. However, colors may vary slightly due to monitor settings. If you\'re not satisfied with your purchase, our return policy applies.'
+        question: 'Apakah foto produk akurat?',
+        answer: 'Kami berusaha menampilkan foto seakurat mungkin. Warna mungkin sedikit berbeda tergantung layar. Jika tidak puas, Anda dapat mengembalikannya.'
       },
       {
         id: 'product-3',
-        question: 'Do you offer product warranties?',
-        answer: 'Yes, electronic items come with manufacturer warranties. The warranty period varies by product and is clearly stated on the product page.'
+        question: 'Apakah ada garansi produk?',
+        answer: 'Produk elektronik dilengkapi garansi dari produsen. Lama garansi tertera di halaman produk.'
       },
       {
         id: 'product-4',
-        question: 'Can I request a product that\'s not available?',
-        answer: 'Yes! Contact our customer service team with your product request. We\'ll do our best to source it for you or suggest similar alternatives.'
+        question: 'Bisakah saya meminta produk yang belum tersedia?',
+        answer: 'Tentu! Hubungi kami untuk permintaan produk, dan kami akan usahakan mencarikannya atau memberi alternatif.'
       }
     ]
   }
@@ -138,7 +138,7 @@ export const FAQ = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    
+
     if (!query.trim()) {
       setFilteredFAQ(faqData);
       return;
@@ -152,27 +152,27 @@ export const FAQ = () => {
           faq.answer.toLowerCase().includes(query.toLowerCase())
       )
     })).filter(category => category.questions.length > 0);
-    
+
     setFilteredFAQ(filtered);
   };
 
   return (
     <div className="container py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Frequently Asked Questions</h1>
+        <h1 className="text-3xl font-bold mb-2">Pertanyaan yang Sering Diajukan</h1>
         <p className="text-muted-foreground">
-          Find answers to common questions about our services
+          Temukan jawaban atas pertanyaan umum seputar layanan kami
         </p>
       </div>
 
-      {/* Search */}
+      {/* Pencarian */}
       <Card className="mb-8">
         <CardContent className="p-6">
           <div className="relative">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search for answers..."
+              placeholder="Cari jawaban..."
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
               className="pl-10"
@@ -181,7 +181,7 @@ export const FAQ = () => {
         </CardContent>
       </Card>
 
-      {/* FAQ Categories */}
+      {/* Kategori FAQ */}
       <div className="space-y-8">
         {filteredFAQ.map((category) => (
           <Card key={category.category}>
@@ -207,12 +207,12 @@ export const FAQ = () => {
       {filteredFAQ.length === 0 && (
         <Card>
           <CardContent className="p-8 text-center">
-            <h3 className="text-lg font-semibold mb-2">No results found</h3>
+            <h3 className="text-lg font-semibold mb-2">Tidak ada hasil ditemukan</h3>
             <p className="text-muted-foreground mb-4">
-              We couldn't find any FAQs matching your search. Try different keywords or browse our categories above.
+              Kami tidak menemukan FAQ yang cocok dengan pencarian Anda. Coba gunakan kata kunci lain.
             </p>
             <p className="text-sm text-muted-foreground">
-              Still have questions? <a href="/contact" className="text-primary hover:underline">Contact our support team</a>
+              Masih punya pertanyaan? <a href="/contact" className="text-primary hover:underline">Hubungi tim kami</a>
             </p>
           </CardContent>
         </Card>

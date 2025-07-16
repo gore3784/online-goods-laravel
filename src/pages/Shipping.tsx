@@ -14,41 +14,41 @@ export const Shipping = () => {
   return (
     <div className="container py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Shipping Information</h1>
+        <h1 className="text-3xl font-bold mb-2">Informasi Pengiriman</h1>
         <p className="text-muted-foreground">
-          Everything you need to know about our shipping policies and delivery options
+          Semua yang perlu Anda ketahui tentang kebijakan pengiriman dan opsi pengantaran kami
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Shipping Options */}
+        {/* Opsi Pengiriman */}
         <div className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <TruckIcon className="h-5 w-5" />
-                <span>Shipping Options</span>
+                <span>Opsi Pengiriman</span>
               </CardTitle>
               <CardDescription>
-                Choose the delivery speed that works best for you
+                Pilih kecepatan pengiriman yang sesuai dengan kebutuhan Anda
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Standard Shipping</h4>
-                  <Badge variant="secondary">Most Popular</Badge>
+                  <h4 className="font-semibold">Pengiriman Standar</h4>
+                  <Badge variant="secondary">Paling Populer</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Reliable delivery for everyday orders
+                  Pengiriman terpercaya untuk pesanan harian Anda
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="font-medium">Delivery Time:</span>
-                    <p className="text-muted-foreground">2-5 business days</p>
+                    <span className="font-medium">Estimasi Waktu:</span>
+                    <p className="text-muted-foreground">2-5 hari kerja</p>
                   </div>
                   <div>
-                    <span className="font-medium">Cost:</span>
+                    <span className="font-medium">Biaya:</span>
                     <p className="text-muted-foreground">{formatPrice(15000)} - {formatPrice(35000)}</p>
                   </div>
                 </div>
@@ -56,19 +56,19 @@ export const Shipping = () => {
 
               <div className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Express Shipping</h4>
-                  <Badge variant="default">Fast</Badge>
+                  <h4 className="font-semibold">Pengiriman Ekspres</h4>
+                  <Badge variant="default">Cepat</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Quick delivery when you need it fast
+                  Pengiriman cepat saat Anda membutuhkannya segera
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="font-medium">Delivery Time:</span>
-                    <p className="text-muted-foreground">1-2 business days</p>
+                    <span className="font-medium">Estimasi Waktu:</span>
+                    <p className="text-muted-foreground">1-2 hari kerja</p>
                   </div>
                   <div>
-                    <span className="font-medium">Cost:</span>
+                    <span className="font-medium">Biaya:</span>
                     <p className="text-muted-foreground">{formatPrice(25000)} - {formatPrice(50000)}</p>
                   </div>
                 </div>
@@ -76,19 +76,19 @@ export const Shipping = () => {
 
               <div className="border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold">Same Day Delivery</h4>
-                  <Badge variant="destructive">Jakarta Only</Badge>
+                  <h4 className="font-semibold">Pengiriman Hari yang Sama</h4>
+                  <Badge variant="destructive">Hanya Jakarta</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Get your order on the same day (Jakarta area only)
+                  Pesanan tiba di hari yang sama (khusus wilayah Jakarta)
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="font-medium">Delivery Time:</span>
-                    <p className="text-muted-foreground">Same day</p>
+                    <span className="font-medium">Estimasi Waktu:</span>
+                    <p className="text-muted-foreground">Hari yang sama</p>
                   </div>
                   <div>
-                    <span className="font-medium">Cost:</span>
+                    <span className="font-medium">Biaya:</span>
                     <p className="text-muted-foreground">{formatPrice(50000)} - {formatPrice(75000)}</p>
                   </div>
                 </div>
@@ -100,67 +100,67 @@ export const Shipping = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <MapPinIcon className="h-5 w-5" />
-                <span>Delivery Areas</span>
+                <span>Wilayah Pengiriman</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-green-600">Jakarta & Surrounding Areas</h4>
+                  <h4 className="font-semibold text-green-600">Jakarta & Sekitarnya</h4>
                   <p className="text-sm text-muted-foreground">
                     Jakarta, Bogor, Depok, Tangerang, Bekasi (Jabodetabek)
                   </p>
-                  <p className="text-sm font-medium">All shipping options available</p>
+                  <p className="text-sm font-medium">Semua opsi pengiriman tersedia</p>
                 </div>
-                
+
                 <div>
-                  <h4 className="font-semibold text-blue-600">Major Cities</h4>
+                  <h4 className="font-semibold text-blue-600">Kota Besar</h4>
                   <p className="text-sm text-muted-foreground">
                     Bandung, Surabaya, Yogyakarta, Semarang, Medan, Makassar
                   </p>
-                  <p className="text-sm font-medium">Standard & Express shipping</p>
+                  <p className="text-sm font-medium">Pengiriman Standar & Ekspres</p>
                 </div>
-                
+
                 <div>
-                  <h4 className="font-semibold text-orange-600">Other Areas</h4>
+                  <h4 className="font-semibold text-orange-600">Wilayah Lain</h4>
                   <p className="text-sm text-muted-foreground">
-                    All other cities and regions in Indonesia
+                    Seluruh wilayah lainnya di Indonesia
                   </p>
-                  <p className="text-sm font-medium">Standard shipping only</p>
+                  <p className="text-sm font-medium">Hanya pengiriman standar</p>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Shipping Policies */}
+        {/* Kebijakan Pengiriman */}
         <div className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <ShieldCheckIcon className="h-5 w-5" />
-                <span>Free Shipping</span>
+                <span>Gratis Ongkir</span>
               </CardTitle>
               <CardDescription>
-                Enjoy free shipping on qualifying orders
+                Nikmati pengiriman gratis untuk pesanan yang memenuhi syarat
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                 <h4 className="font-semibold text-green-800 mb-2">
-                  Free Standard Shipping
+                  Pengiriman Standar Gratis
                 </h4>
                 <p className="text-sm text-green-700">
-                  Orders over {formatPrice(500000)} within Jakarta area qualify for free standard shipping.
+                  Berlaku untuk pesanan di atas {formatPrice(500000)} di wilayah Jakarta.
                 </p>
               </div>
-              
+
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <h4 className="font-semibold text-blue-800 mb-2">
-                  Free Express Shipping
+                  Pengiriman Ekspres Gratis
                 </h4>
                 <p className="text-sm text-blue-700">
-                  Orders over {formatPrice(1000000)} within Jakarta area qualify for free express shipping.
+                  Berlaku untuk pesanan di atas {formatPrice(1000000)} di wilayah Jakarta.
                 </p>
               </div>
             </CardContent>
@@ -170,28 +170,28 @@ export const Shipping = () => {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <ClockIcon className="h-5 w-5" />
-                <span>Processing Time</span>
+                <span>Waktu Pemrosesan</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <h4 className="font-semibold">Order Processing</h4>
+                <h4 className="font-semibold">Pemrosesan Pesanan</h4>
                 <p className="text-sm text-muted-foreground">
-                  Most orders are processed within 1-2 business days after payment confirmation.
+                  Sebagian besar pesanan diproses dalam 1-2 hari kerja setelah konfirmasi pembayaran.
                 </p>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold">Cut-off Times</h4>
+                <h4 className="font-semibold">Batas Waktu Pemesanan</h4>
                 <p className="text-sm text-muted-foreground">
-                  Orders placed before 2:00 PM on weekdays are typically processed the same day.
+                  Pesanan sebelum pukul 14.00 pada hari kerja biasanya diproses di hari yang sama.
                 </p>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold">Weekends & Holidays</h4>
+                <h4 className="font-semibold">Akhir Pekan & Hari Libur</h4>
                 <p className="text-sm text-muted-foreground">
-                  Orders placed on weekends or holidays will be processed on the next business day.
+                  Pesanan pada akhir pekan atau hari libur akan diproses di hari kerja berikutnya.
                 </p>
               </div>
             </CardContent>
@@ -199,34 +199,34 @@ export const Shipping = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle>Important Notes</CardTitle>
+              <CardTitle>Catatan Penting</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <h4 className="font-semibold">Address Accuracy</h4>
+                <h4 className="font-semibold">Keakuratan Alamat</h4>
                 <p className="text-sm text-muted-foreground">
-                  Please ensure your shipping address is correct. We're not responsible for packages delivered to incorrect addresses.
+                  Pastikan alamat pengiriman Anda benar. Kami tidak bertanggung jawab atas pengiriman ke alamat yang salah.
                 </p>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold">Package Tracking</h4>
+                <h4 className="font-semibold">Pelacakan Paket</h4>
                 <p className="text-sm text-muted-foreground">
-                  You'll receive a tracking number via email once your order ships. Track your package through our website or the courier's tracking system.
+                  Nomor resi akan dikirim melalui email setelah pesanan dikirim. Anda dapat melacaknya melalui situs kami atau sistem pelacakan ekspedisi.
                 </p>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold">Delivery Attempts</h4>
+                <h4 className="font-semibold">Percobaan Pengiriman</h4>
                 <p className="text-sm text-muted-foreground">
-                  If delivery fails, the courier will attempt delivery up to 3 times. After that, the package will be returned to us.
+                  Jika pengiriman gagal, kurir akan mencoba hingga 3 kali. Setelah itu, paket akan dikembalikan ke kami.
                 </p>
               </div>
-              
+
               <div>
-                <h4 className="font-semibold">Weather & Force Majeure</h4>
+                <h4 className="font-semibold">Cuaca & Keadaan Tak Terduga</h4>
                 <p className="text-sm text-muted-foreground">
-                  Delivery times may be affected by weather conditions, natural disasters, or other circumstances beyond our control.
+                  Waktu pengiriman dapat terpengaruh oleh cuaca, bencana alam, atau kondisi di luar kendali kami.
                 </p>
               </div>
             </CardContent>

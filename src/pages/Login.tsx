@@ -26,36 +26,49 @@ export const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.email || !formData.password) {
       toast.error('Please fill in all fields');
       return;
     }
 
     setLoading(true);
-    
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Mock user login
-      const user = {
-        id: 'user-1',
-        email: formData.email,
-        full_name: 'John Doe',
-        created_at: new Date().toISOString()
-      };
-      
-      setUser(user);
+      const res = await fetch('http://127.0.0.1:8000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!res.ok) {
+        throw new Error('Invalid credentials');
+      }
+
+      const data = await res.json();
+
+      // Simpan token di localStorage
+      localStorage.setItem('token', data.token);
+
+      // Simpan user di store (jika ada)
+      if (data.user) {
+        setUser(data.user);
+      }
+
       toast.success('Login successful!');
       navigate('/');
-      
+
     } catch (error) {
+      console.error(error);
       toast.error('Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="container py-8">
@@ -79,7 +92,7 @@ export const Login = () => {
                   required
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="password">Password</Label>
                 <Input
@@ -91,9 +104,9 @@ export const Login = () => {
                 />
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full" 
+              <Button
+                type="submit"
+                className="w-full"
                 disabled={loading}
               >
                 {loading ? 'Signing in...' : 'Sign In'}

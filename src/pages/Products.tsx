@@ -1,48 +1,83 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { ProductGrid } from '@/components/products/ProductGrid';
-import { mockProducts, mockCategories } from '@/data/mockData';
 import { useStore } from '@/store/useStore';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+
+type Product = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  image: string;
+  category_id: string;
+  created_at?: string;
+};
+
+type Category = {
+  id: string;
+  name: string;
+};
 
 export const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState('newest');
   const [priceRange, setPriceRange] = useState('all');
   const [loading, setLoading] = useState(true);
-  
-  const { searchQuery, setSearchQuery, selectedCategory, setSelectedCategory } = useStore();
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedCategory,
+    setSelectedCategory
+  } = useStore();
 
   useEffect(() => {
-    // Get search query from URL params
     const query = searchParams.get('q');
     if (query) {
       setSearchQuery(query);
     }
-    
-    setTimeout(() => setLoading(false), 800);
   }, [searchParams, setSearchQuery]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      const queryParams = new URLSearchParams();
+      if (selectedCategory) queryParams.append('category', selectedCategory);
+      if (searchQuery) queryParams.append('search', searchQuery);
+
+      const res = await fetch(`http://localhost:8000/api/products?${queryParams}`);
+      const json = await res.json();
+      setProducts(json.data || []);
+      setLoading(false);
+    };
+
+    fetchProducts();
+  }, [searchQuery, selectedCategory]);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/categories')
+      .then((res) => res.json())
+      .then((data) => setCategories(data));
+  }, []);
+
   const filteredAndSortedProducts = useMemo(() => {
-    let filtered = [...mockProducts];
+    let filtered = [...products];
 
-    // Filter by search query
-    if (searchQuery) {
-      filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Filter by category
-    if (selectedCategory) {
-      filtered = filtered.filter(product => product.category_id === selectedCategory);
-    }
-
-    // Filter by price range
     if (priceRange !== 'all') {
       switch (priceRange) {
         case 'under-100k':
@@ -57,7 +92,6 @@ export const Products = () => {
       }
     }
 
-    // Sort products
     switch (sortBy) {
       case 'price-low':
         filtered.sort((a, b) => a.price - b.price);
@@ -71,18 +105,20 @@ export const Products = () => {
       case 'stock':
         filtered.sort((a, b) => b.stock - a.stock);
         break;
-      default: // newest
-        filtered.sort((a, b) => new Date(b.created_at || '').getTime() - new Date(a.created_at || '').getTime());
+      default:
+        filtered.sort((a, b) =>
+          new Date(b.created_at || '').getTime() - new Date(a.created_at || '').getTime()
+        );
     }
 
     return filtered;
-  }, [searchQuery, selectedCategory, priceRange, sortBy]);
+  }, [products, priceRange, sortBy]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
-      minimumFractionDigits: 0,
+      minimumFractionDigits: 0
     }).format(price);
   };
 
@@ -112,13 +148,16 @@ export const Products = () => {
         </div>
 
         {/* Category Filter */}
-        <Select value={selectedCategory || 'all'} onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)}>
+        <Select
+          value={selectedCategory || 'all'}
+          onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Categories</SelectItem>
-            {mockCategories.map((category) => (
+            {categories.map((category) => (
               <SelectItem key={category.id} value={category.id}>
                 {category.name}
               </SelectItem>
@@ -134,7 +173,9 @@ export const Products = () => {
           <SelectContent>
             <SelectItem value="all">All Prices</SelectItem>
             <SelectItem value="under-100k">Under {formatPrice(100000)}</SelectItem>
-            <SelectItem value="100k-500k">{formatPrice(100000)} - {formatPrice(500000)}</SelectItem>
+            <SelectItem value="100k-500k">
+              {formatPrice(100000)} - {formatPrice(500000)}
+            </SelectItem>
             <SelectItem value="over-500k">Over {formatPrice(500000)}</SelectItem>
           </SelectContent>
         </Select>
