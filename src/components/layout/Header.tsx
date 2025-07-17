@@ -6,9 +6,13 @@ import { Input } from '@/components/ui/input';
 import { useStore } from '@/store/useStore';
 import { Badge } from '@/components/ui/badge';
 import { LogOutIcon, Settings } from 'lucide-react';
+import { LoginModal } from '@/components/auth/LoginModal';
+import { RegisterModal } from '@/components/auth/RegisterModal';
 
 export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -29,12 +33,21 @@ export const Header = () => {
     }
   };
 
-  //logout
   const handleLogout = () => {
     // Clear user data (e.g., from localStorage)
     localStorage.removeItem('userToken'); // Or whatever you use for authentication
     // Redirect to login page or home
     navigate('/login');
+  };
+
+  const handleSwitchToRegister = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
   };
 
   return (
@@ -140,11 +153,24 @@ export const Header = () => {
                 <span className="hidden sm:inline">Logout</span>
               </Button>
             </>
-          ) : (
-            <Button variant="default" size="sm" asChild>
-              <Link to="/login">Login</Link>
-            </Button>
-          )}
+           ) : (
+             <div className="flex items-center space-x-2">
+               <Button 
+                 variant="ghost" 
+                 size="sm" 
+                 onClick={() => setShowLoginModal(true)}
+               >
+                 Login
+               </Button>
+               <Button 
+                 variant="default" 
+                 size="sm" 
+                 onClick={() => setShowRegisterModal(true)}
+               >
+                 Sign Up
+               </Button>
+             </div>
+           )}
 
           {/* Mobile Menu Toggle */}
           <Button
@@ -219,6 +245,18 @@ export const Header = () => {
           </div>
         </div>
       )}
+      
+      <LoginModal 
+        open={showLoginModal} 
+        onOpenChange={setShowLoginModal}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+      
+      <RegisterModal 
+        open={showRegisterModal} 
+        onOpenChange={setShowRegisterModal}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </header>
   );
 };

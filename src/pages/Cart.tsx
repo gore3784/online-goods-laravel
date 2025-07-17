@@ -1,19 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { TrashIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { useStore } from '@/store/useStore';
 import { toast } from 'sonner';
+import { LoginModal } from '@/components/auth/LoginModal';
+import { RegisterModal } from '@/components/auth/RegisterModal';
+import { useState } from 'react';
 
 export const Cart = () => {
+  const navigate = useNavigate();
   const { 
     cartItems, 
     removeFromCart, 
     updateCartQuantity, 
     clearCart, 
-    getCartTotal 
+    getCartTotal,
+    user 
   } = useStore();
+  
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
@@ -35,6 +43,24 @@ export const Cart = () => {
   const handleClearCart = () => {
     clearCart();
     toast.success('Cart cleared');
+  };
+
+  const handleCheckout = () => {
+    if (!user) {
+      setShowLoginModal(true);
+    } else {
+      navigate('/checkout');
+    }
+  };
+
+  const handleSwitchToRegister = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+  };
+
+  const handleSwitchToLogin = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
   };
 
   if (cartItems.length === 0) {
@@ -157,8 +183,8 @@ export const Cart = () => {
               </div>
               
               <div className="space-y-2 pt-4">
-                <Button asChild className="w-full" size="lg">
-                  <Link to="/checkout">Proceed to Checkout</Link>
+                <Button onClick={handleCheckout} className="w-full" size="lg">
+                  Proceed to Checkout
                 </Button>
                 <Button variant="outline" asChild className="w-full">
                   <Link to="/products">Continue Shopping</Link>
@@ -168,6 +194,18 @@ export const Cart = () => {
           </Card>
         </div>
       </div>
+      
+      <LoginModal 
+        open={showLoginModal} 
+        onOpenChange={setShowLoginModal}
+        onSwitchToRegister={handleSwitchToRegister}
+      />
+      
+      <RegisterModal 
+        open={showRegisterModal} 
+        onOpenChange={setShowRegisterModal}
+        onSwitchToLogin={handleSwitchToLogin}
+      />
     </div>
   );
 };
