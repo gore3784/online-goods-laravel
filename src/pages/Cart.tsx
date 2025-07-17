@@ -28,6 +28,7 @@ export const Cart = () => {
       style: 'currency',
       currency: 'IDR',
       minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
     }).format(price);
   };
 
@@ -98,25 +99,37 @@ export const Cart = () => {
           {cartItems.map((item) => (
             <Card key={item.id}>
               <CardContent className="p-6">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-start space-x-4">
                   <img
                     src={item.product.image}
                     alt={item.product.name}
-                    className="w-20 h-20 object-cover rounded-lg"
+                    className="w-24 h-24 object-cover rounded-lg flex-shrink-0"
                   />
                   
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-lg mb-1">
-                      <Link 
-                        to={`/products/${item.product.slug}`}
-                        className="hover:text-primary transition-colors"
+                  <div className="flex-1 min-w-0">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex-1 min-w-0 pr-4">
+                        <h3 className="font-semibold text-lg mb-1 line-clamp-2">
+                          <Link 
+                            to={`/products/${item.product.slug}`}
+                            className="hover:text-primary transition-colors"
+                          >
+                            {item.product.name}
+                          </Link>
+                        </h3>
+                        <p className="text-muted-foreground text-sm">
+                          <span className="font-medium">{formatPrice(item.product.price)}</span> each
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleRemoveItem(item.product.id, item.product.name)}
+                        className="flex-shrink-0"
                       >
-                        {item.product.name}
-                      </Link>
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-2">
-                      {formatPrice(item.product.price)} each
-                    </p>
+                        <TrashIcon className="h-4 w-4 text-destructive" />
+                      </Button>
+                    </div>
                     
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
@@ -125,10 +138,11 @@ export const Cart = () => {
                           size="sm"
                           onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
+                          className="h-8 w-8 p-0"
                         >
-                          <MinusIcon className="h-4 w-4" />
+                          <MinusIcon className="h-3 w-3" />
                         </Button>
-                        <span className="px-3 py-1 border rounded text-center min-w-[50px]">
+                        <span className="px-3 py-1 border rounded text-center min-w-[60px] font-medium">
                           {item.quantity}
                         </span>
                         <Button
@@ -136,22 +150,19 @@ export const Cart = () => {
                           size="sm"
                           onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
                           disabled={item.quantity >= item.product.stock}
+                          className="h-8 w-8 p-0"
                         >
-                          <PlusIcon className="h-4 w-4" />
+                          <PlusIcon className="h-3 w-3" />
                         </Button>
                       </div>
                       
-                      <div className="flex items-center space-x-4">
-                        <span className="font-semibold text-lg">
+                      <div className="text-right">
+                        <div className="font-bold text-lg text-primary">
                           {formatPrice(item.product.price * item.quantity)}
-                        </span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleRemoveItem(item.product.id, item.product.name)}
-                        >
-                          <TrashIcon className="h-4 w-4 text-destructive" />
-                        </Button>
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {item.quantity} × {formatPrice(item.product.price)}
+                        </div>
                       </div>
                     </div>
                   </div>
