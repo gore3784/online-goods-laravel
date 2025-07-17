@@ -85,31 +85,31 @@ export const Cart = () => {
   const grandTotal = total + shipping;
 
   return (
-    <div className="container py-8">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">Shopping Cart</h1>
-        <Button variant="outline" onClick={handleClearCart}>
+    <div className="container py-4 md:py-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold">Shopping Cart</h1>
+        <Button variant="outline" onClick={handleClearCart} size="sm" className="self-start sm:self-auto">
           Clear Cart
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
         {/* Cart Items */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-3 md:space-y-4">
           {cartItems.map((item) => (
             <Card key={item.id}>
-              <CardContent className="p-6">
-                <div className="flex items-start space-x-4">
+              <CardContent className="p-4 md:p-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                   <img
                     src={item.product.image}
                     alt={item.product.name}
-                    className="w-24 h-24 object-cover rounded-lg flex-shrink-0"
+                    className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg flex-shrink-0 mx-auto sm:mx-0"
                   />
                   
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start mb-3">
-                      <div className="flex-1 min-w-0 pr-4">
-                        <h3 className="font-semibold text-lg mb-1 line-clamp-2">
+                  <div className="flex-1 min-w-0 w-full">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mb-3">
+                      <div className="flex-1 min-w-0 w-full sm:pr-4">
+                        <h3 className="font-semibold text-base md:text-lg mb-1 line-clamp-2 text-center sm:text-left">
                           <Link 
                             to={`/products/${item.product.slug}`}
                             className="hover:text-primary transition-colors"
@@ -117,7 +117,7 @@ export const Cart = () => {
                             {item.product.name}
                           </Link>
                         </h3>
-                        <p className="text-muted-foreground text-sm">
+                        <p className="text-muted-foreground text-sm text-center sm:text-left">
                           <span className="font-medium">{formatPrice(item.product.price)}</span> each
                         </p>
                       </div>
@@ -125,14 +125,14 @@ export const Cart = () => {
                         variant="ghost"
                         size="sm"
                         onClick={() => handleRemoveItem(item.product.id, item.product.name)}
-                        className="flex-shrink-0"
+                        className="flex-shrink-0 self-center sm:self-start"
                       >
                         <TrashIcon className="h-4 w-4 text-destructive" />
                       </Button>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="flex items-center space-x-2 mx-auto sm:mx-0">
                         <Button
                           variant="outline"
                           size="sm"
@@ -156,7 +156,7 @@ export const Cart = () => {
                         </Button>
                       </div>
                       
-                      <div className="text-right">
+                      <div className="text-center sm:text-right">
                         <div className="font-bold text-lg text-primary">
                           {formatPrice(item.product.price * item.quantity)}
                         </div>
@@ -175,20 +175,20 @@ export const Cart = () => {
         {/* Order Summary */}
         <div className="lg:col-span-1">
           <Card className="sticky top-4">
-            <CardHeader>
-              <CardTitle>Order Summary</CardTitle>
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg md:text-xl">Order Summary</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex justify-between">
+            <CardContent className="space-y-3 md:space-y-4">
+              <div className="flex justify-between text-sm md:text-base">
                 <span>Subtotal</span>
                 <span>{formatPrice(total)}</span>
               </div>
-              <div className="flex justify-between">
+              <div className="flex justify-between text-sm md:text-base">
                 <span>Shipping</span>
                 <span>{formatPrice(shipping)}</span>
               </div>
               <Separator />
-              <div className="flex justify-between font-semibold text-lg">
+              <div className="flex justify-between font-semibold text-base md:text-lg">
                 <span>Total</span>
                 <span>{formatPrice(grandTotal)}</span>
               </div>
