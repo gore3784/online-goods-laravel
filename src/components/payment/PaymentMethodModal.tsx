@@ -20,7 +20,7 @@ interface PaymentOption {
   name: string;
   description: string;
   icon: React.ReactNode;
-  category: 'bank' | 'ewallet' | 'card' | 'cod' | 'va';
+  category: 'bank' | 'ewallet' | 'card' | 'cod' | 'va' | 'qris';
 }
 
 const paymentOptions: PaymentOption[] = [
@@ -54,6 +54,15 @@ const paymentOptions: PaymentOption[] = [
     category: 'bank'
   },
   
+  // QRIS
+  {
+    id: 'qris',
+    name: 'QRIS',
+    description: 'Quick Response Code Indonesian Standard',
+    icon: <Smartphone className="h-5 w-5 text-blue-600" />,
+    category: 'qris'
+  },
+
   // E-Wallet
   {
     id: 'gopay',
@@ -134,6 +143,7 @@ const paymentOptions: PaymentOption[] = [
 ];
 
 const categoryNames = {
+  qris: 'QRIS',
   bank: 'Transfer Bank',
   ewallet: 'E-Wallet',
   va: 'Virtual Account',

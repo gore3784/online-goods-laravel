@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CalendarIcon, ArchiveBoxIcon, TruckIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { OrderDetailsModal } from '@/components/orders/OrderDetailsModal';
 
 // Mock order data
 const mockOrders = [
@@ -88,7 +89,9 @@ const mockOrders = [
 ];
 
 export const Orders = () => {
-  const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
+  const [modalType, setModalType] = useState<'details' | 'tracking'>('details');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
@@ -132,6 +135,18 @@ export const Orders = () => {
       default:
         return <CalendarIcon className="h-5 w-5" />;
     }
+  };
+
+  const handleViewDetails = (order: any) => {
+    setSelectedOrder(order);
+    setModalType('details');
+    setIsModalOpen(true);
+  };
+
+  const handleTrackPackage = (order: any) => {
+    setSelectedOrder(order);
+    setModalType('tracking');
+    setIsModalOpen(true);
   };
 
   return (
@@ -218,7 +233,11 @@ export const Orders = () => {
 
                   {/* Actions */}
                   <div className="border-t pt-4 flex space-x-2">
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => handleViewDetails(order)}
+                    >
                       View Details
                     </Button>
                     {order.status === 'delivered' && (
@@ -227,7 +246,11 @@ export const Orders = () => {
                       </Button>
                     )}
                     {order.status === 'shipped' && (
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleTrackPackage(order)}
+                      >
                         Track Package
                       </Button>
                     )}
@@ -292,6 +315,13 @@ export const Orders = () => {
           </TabsContent>
         ))}
       </Tabs>
+
+      <OrderDetailsModal
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
+        order={selectedOrder}
+        type={modalType}
+      />
     </div>
   );
 };
