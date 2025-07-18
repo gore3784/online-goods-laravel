@@ -10,12 +10,14 @@ import { useStore } from '@/store/useStore';
 import { ShippingAddress } from '@/types';
 import { toast } from 'sonner';
 import { CreditCard, Building, Truck } from 'lucide-react';
+import { PaymentMethodModal } from '@/components/payment/PaymentMethodModal';
 
 export const Checkout = () => {
   const navigate = useNavigate();
   const { cartItems, getCartTotal, clearCart } = useStore();
   const [loading, setLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState('bank_transfer');
+  const [paymentMethod, setPaymentMethod] = useState('');
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     full_name: '',
@@ -41,8 +43,34 @@ export const Checkout = () => {
     }));
   };
 
+  const getPaymentMethodName = () => {
+    const paymentNames: Record<string, string> = {
+      'bank_bca': 'Bank BCA',
+      'bank_mandiri': 'Bank Mandiri',
+      'bank_bri': 'Bank BRI',
+      'bank_bni': 'Bank BNI',
+      'gopay': 'GoPay',
+      'ovo': 'OVO',
+      'dana': 'DANA',
+      'shopeepay': 'ShopeePay',
+      'linkaja': 'LinkAja',
+      'va_bca': 'Virtual Account BCA',
+      'va_mandiri': 'Virtual Account Mandiri',
+      'va_bri': 'Virtual Account BRI',
+      'credit_card': 'Kartu Kredit',
+      'cod': 'Bayar di Tempat (COD)'
+    };
+    return paymentNames[paymentMethod] || 'Pilih metode pembayaran';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate payment method
+    if (!paymentMethod) {
+      toast.error('Silakan pilih metode pembayaran');
+      return;
+    }
     
     // Validate form
     const requiredFields: (keyof ShippingAddress)[] = [
@@ -193,37 +221,36 @@ export const Checkout = () => {
             {/* Payment Method */}
             <Card>
               <CardHeader>
-                <CardTitle>Payment Method</CardTitle>
+                <CardTitle>Metode Pembayaran</CardTitle>
               </CardHeader>
               <CardContent>
-                <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="space-y-4">
-                  <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
-                    <RadioGroupItem value="bank_transfer" id="bank_transfer" />
-                    <Building className="h-5 w-5 text-primary" />
-                    <div className="flex-1">
-                      <Label htmlFor="bank_transfer" className="cursor-pointer font-medium">Bank Transfer</Label>
-                      <p className="text-sm text-muted-foreground">Transfer directly to our bank account</p>
+                <div className="space-y-4">
+                  <div className="p-4 border rounded-lg bg-accent/20">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-medium">{getPaymentMethodName()}</p>
+                        {paymentMethod && (
+                          <p className="text-sm text-muted-foreground">
+                            Metode pembayaran yang dipilih
+                          </p>
+                        )}
+                      </div>
+                      <Button 
+                        type="button"
+                        variant="outline" 
+                        onClick={() => setIsPaymentModalOpen(true)}
+                      >
+                        {paymentMethod ? 'Ubah' : 'Pilih'}
+                      </Button>
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
-                    <RadioGroupItem value="credit_card" id="credit_card" />
-                    <CreditCard className="h-5 w-5 text-primary" />
-                    <div className="flex-1">
-                      <Label htmlFor="credit_card" className="cursor-pointer font-medium">Credit Card</Label>
-                      <p className="text-sm text-muted-foreground">Secure payment with your credit card</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
-                    <RadioGroupItem value="cash_on_delivery" id="cash_on_delivery" />
-                    <Truck className="h-5 w-5 text-primary" />
-                    <div className="flex-1">
-                      <Label htmlFor="cash_on_delivery" className="cursor-pointer font-medium">Cash on Delivery</Label>
-                      <p className="text-sm text-muted-foreground">Pay when your order arrives</p>
-                    </div>
-                  </div>
-                </RadioGroup>
+                  {!paymentMethod && (
+                    <p className="text-sm text-destructive">
+                      * Silakan pilih metode pembayaran untuk melanjutkan
+                    </p>
+                  )}
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -278,6 +305,15 @@ export const Checkout = () => {
           </div>
         </div>
       </form>
+      
+      {/* Payment Method Modal */}
+      <PaymentMethodModal
+        open={isPaymentModalOpen}
+        onOpenChange={setIsPaymentModalOpen}
+        selectedMethod={paymentMethod}
+        onMethodSelect={setPaymentMethod}
+        onConfirm={() => {}}
+      />
     </div>
   );
 };
