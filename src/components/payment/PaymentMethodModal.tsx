@@ -171,12 +171,12 @@ export const PaymentMethodModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[80vh] overflow-hidden">
-        <DialogHeader>
+      <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col">
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle>Pilih Metode Pembayaran</DialogTitle>
         </DialogHeader>
         
-        <div className="overflow-y-auto pr-2">
+        <div className="overflow-y-auto flex-1 pr-2 -mr-2">
           <RadioGroup 
             value={tempSelectedMethod} 
             onValueChange={setTempSelectedMethod}
