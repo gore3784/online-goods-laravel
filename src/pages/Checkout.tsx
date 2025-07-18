@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useStore } from '@/store/useStore';
 import { ShippingAddress } from '@/types';
 import { toast } from 'sonner';
+import { CreditCard, Building, Truck } from 'lucide-react';
 
 export const Checkout = () => {
   const navigate = useNavigate();
@@ -195,18 +196,32 @@ export const Checkout = () => {
                 <CardTitle>Payment Method</CardTitle>
               </CardHeader>
               <CardContent>
-                <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
-                  <div className="flex items-center space-x-2">
+                <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="space-y-4">
+                  <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
                     <RadioGroupItem value="bank_transfer" id="bank_transfer" />
-                    <Label htmlFor="bank_transfer">Bank Transfer</Label>
+                    <Building className="h-5 w-5 text-primary" />
+                    <div className="flex-1">
+                      <Label htmlFor="bank_transfer" className="cursor-pointer font-medium">Bank Transfer</Label>
+                      <p className="text-sm text-muted-foreground">Transfer directly to our bank account</p>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  
+                  <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
                     <RadioGroupItem value="credit_card" id="credit_card" />
-                    <Label htmlFor="credit_card">Credit Card</Label>
+                    <CreditCard className="h-5 w-5 text-primary" />
+                    <div className="flex-1">
+                      <Label htmlFor="credit_card" className="cursor-pointer font-medium">Credit Card</Label>
+                      <p className="text-sm text-muted-foreground">Secure payment with your credit card</p>
+                    </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  
+                  <div className="flex items-center space-x-3 p-4 border rounded-lg hover:bg-accent/50 transition-colors cursor-pointer">
                     <RadioGroupItem value="cash_on_delivery" id="cash_on_delivery" />
-                    <Label htmlFor="cash_on_delivery">Cash on Delivery</Label>
+                    <Truck className="h-5 w-5 text-primary" />
+                    <div className="flex-1">
+                      <Label htmlFor="cash_on_delivery" className="cursor-pointer font-medium">Cash on Delivery</Label>
+                      <p className="text-sm text-muted-foreground">Pay when your order arrives</p>
+                    </div>
                   </div>
                 </RadioGroup>
               </CardContent>
